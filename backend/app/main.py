@@ -13,6 +13,8 @@ app.add_middleware(
         "http://192.168.4.166:8080",
         "http://chunkyboy.reindeer-great.ts.net",
         "https://chunkyboy.reindeer-great.ts.net",
+        "http://chunkyboy.reindeer-great.ts.net:8080",
+        "https://chunkyboy.reindeer-great.ts.net:8080",
     ],
     allow_credentials=True,
     allow_methods=["*"],
