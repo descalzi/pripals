@@ -5,6 +5,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 8080,
-    host: true
+    host: true,
+    allowedHosts: [
+      'chunkyboy.reindeer-great.ts.net',
+      '.ts.net', // Allow all Tailscale hosts
+    ]
   }
 })
