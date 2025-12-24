@@ -5,7 +5,7 @@ import { League, Friend, POINT_REASONS } from '../types';
 import { apiClient } from '../api/client';
 import LeagueCard from '../components/LeagueCard';
 import EmptyState from '../components/EmptyState';
-import logo from '../assets/logo.png';
+import banner from '../assets/banner.png';
 import { useNavigate } from 'react-router-dom';
 
 const LeaguesPage = () => {
@@ -99,28 +99,19 @@ const LeaguesPage = () => {
 
   return (
     <Container maxWidth="sm" sx={{ py: 3 }}>
-      <Box sx={{ textAlign: 'center', mb: 4 }}>
+      <Box sx={{ mb: 4 }}>
         <Box
           component="img"
-          src={logo}
-          alt="Pri-Pals Logo"
+          src={banner}
+          alt="Pri-Pals"
           sx={{
-            width: 200,
+            width: '100%',
             height: 'auto',
+            borderRadius: 3,
+            boxShadow: 3,
             mb: 2,
-            animation: 'bounce 2s ease-in-out infinite',
-            '@keyframes bounce': {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' },
-            },
           }}
         />
-        <Typography variant="h2" color="primary" gutterBottom>
-          Pri-Pals
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-          Your Friend League System
-        </Typography>
       </Box>
 
       {hasNoFriends ? (
