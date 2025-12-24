@@ -7,21 +7,29 @@ const getApiUrl = () => {
     return import.meta.env.VITE_API_URL;
   }
 
+  const hostname = window.location.hostname;
+
   // If accessing via Tailscale, use Tailscale hostname
-  if (window.location.hostname.includes('ts.net')) {
-    return `http://${window.location.hostname.replace(':8080', '')}:8000`;
+  if (hostname.includes('ts.net')) {
+    const apiUrl = `http://${hostname}:8000`;
+    console.log('Using Tailscale API URL:', apiUrl);
+    return apiUrl;
   }
 
   // If accessing via local network IP, use that IP
-  if (window.location.hostname.match(/^\d+\.\d+\.\d+\.\d+$/)) {
-    return `http://${window.location.hostname}:8000`;
+  if (hostname.match(/^\d+\.\d+\.\d+\.\d+$/)) {
+    const apiUrl = `http://${hostname}:8000`;
+    console.log('Using IP-based API URL:', apiUrl);
+    return apiUrl;
   }
 
   // Default to localhost
+  console.log('Using localhost API URL');
   return 'http://localhost:8000';
 };
 
 const API_BASE_URL = getApiUrl();
+console.log('API_BASE_URL initialized as:', API_BASE_URL);
 
 class ApiClient {
   private baseUrl: string;

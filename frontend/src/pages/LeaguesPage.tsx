@@ -24,7 +24,14 @@ const LeaguesPage = () => {
       const data = await apiClient.getLeagues();
       setLeagues(data);
     } catch (err) {
-      setError('Failed to load leagues. Make sure the backend is running.');
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      const errorDetails = `
+        Failed to load leagues.
+        Error: ${errorMessage}
+        API URL: ${window.location.hostname}
+        Trying to connect to: http://${window.location.hostname}:8000
+      `;
+      setError(errorDetails);
       console.error('Error fetching leagues:', err);
     } finally {
       setLoading(false);

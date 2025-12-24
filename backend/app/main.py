@@ -8,7 +8,7 @@ app = FastAPI(title="Pri-Pals API", version="1.0.0")
 # In production, you should restrict this to specific domains
 app.add_middleware(
     CORSMiddleware,
-    allow_origin_regex=r"http://.*:8080|https://.*\.ts\.net.*",  # Allow any IP/hostname on port 8080 or Tailscale
+    allow_origins=["*"],  # Allow all origins for development
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
