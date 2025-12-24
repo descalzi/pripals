@@ -1,6 +1,27 @@
 import { Friend, FriendCreate, FriendUpdate, PointActionCreate, League } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+// Determine API URL based on environment
+const getApiUrl = () => {
+  // If VITE_API_URL is set, use it
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+
+  // If accessing via Tailscale, use Tailscale hostname
+  if (window.location.hostname.includes('ts.net')) {
+    return `http://${window.location.hostname.replace(':8080', '')}:8000`;
+  }
+
+  // If accessing via local network IP, use that IP
+  if (window.location.hostname.match(/^\d+\.\d+\.\d+\.\d+$/)) {
+    return `http://${window.location.hostname}:8000`;
+  }
+
+  // Default to localhost
+  return 'http://localhost:8000';
+};
+
+const API_BASE_URL = getApiUrl();
 
 class ApiClient {
   private baseUrl: string;

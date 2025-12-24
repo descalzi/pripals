@@ -4,18 +4,11 @@ from app.api.routes import router
 
 app = FastAPI(title="Pri-Pals API", version="1.0.0")
 
-# Configure CORS
+# Configure CORS - allow all origins for development
+# In production, you should restrict this to specific domains
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:8080",
-        "http://127.0.0.1:8080",
-        "http://192.168.4.166:8080",
-        "http://chunkyboy.reindeer-great.ts.net",
-        "https://chunkyboy.reindeer-great.ts.net",
-        "http://chunkyboy.reindeer-great.ts.net:8080",
-        "https://chunkyboy.reindeer-great.ts.net:8080",
-    ],
+    allow_origin_regex=r"http://.*:8080|https://.*\.ts\.net.*",  # Allow any IP/hostname on port 8080 or Tailscale
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
