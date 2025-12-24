@@ -8,8 +8,6 @@ services:
     container_name: pripals-backend
     ports:
       - "8000:8000"
-    volumes:
-      - ./backend/app:/app/app
     environment:
       - PYTHONUNBUFFERED=1
     restart: unless-stopped
@@ -17,15 +15,10 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     container_name: pripals-frontend
     ports:
       - "8080:8080"
-    volumes:
-      - ./frontend/src:/app/src
-      - ./frontend/public:/app/public
-    environment:
-      - VITE_API_URL=http://localhost:8000
     depends_on:
       - backend
     restart: unless-stopped

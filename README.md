@@ -18,19 +18,28 @@ A friendly, funny web application to rank your friends based on points. Friends 
 
 ## Getting Started
 
-### With Docker (Recommended)
+### With Docker
 
-1. Make sure Docker and Docker Compose are installed
-2. Run the application:
+#### Development Mode (Hot Reload)
 
 ```bash
 docker-compose up --build
 ```
 
-3. Access the application:
-   - Frontend: http://localhost:8080
-   - Backend API: http://localhost:8000
-   - API Docs: http://localhost:8000/docs
+This runs the Vite dev server with hot module replacement for development.
+
+#### Production Mode (Optimized Static Build)
+
+```bash
+docker-compose -f docker-compose.prod.yml up --build
+```
+
+This builds the React app and serves it with Nginx - much faster and smaller!
+
+**Access the application:**
+- Frontend: http://localhost:8080
+- Backend API: http://localhost:8000
+- API Docs: http://localhost:8000/docs
 
 ### Local Development
 
