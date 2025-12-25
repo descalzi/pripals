@@ -30,6 +30,9 @@ COPY --from=frontend-build /app/frontend/dist /usr/share/nginx/html
 # Copy nginx config
 COPY nginx-unified.conf /etc/nginx/sites-available/default
 
+# Create data directory for SQLite database
+RUN mkdir -p /app/data
+
 # Expose single port
 EXPOSE 8080
 

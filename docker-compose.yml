@@ -8,8 +8,10 @@ services:
       - "8000:8000"
     volumes:
       - ./backend/app:/app/app
+      - pripals-data:/app/data
     environment:
       - PYTHONUNBUFFERED=1
+      - DATABASE_URL=sqlite:///./data/pripals.db
     restart: unless-stopped
 
   frontend:
@@ -27,3 +29,6 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
+
+volumes:
+  pripals-data:

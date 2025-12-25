@@ -6,6 +6,12 @@ services:
     container_name: pripals-unified
     ports:
       - "8080:8080"
+    volumes:
+      - pripals-data:/app/data
     restart: unless-stopped
     environment:
       - PYTHONUNBUFFERED=1
+      - DATABASE_URL=sqlite:///./data/pripals.db
+
+volumes:
+  pripals-data:
