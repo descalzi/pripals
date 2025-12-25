@@ -20,26 +20,37 @@ A friendly, funny web application to rank your friends based on points. Friends 
 
 ### With Docker
 
-#### Development Mode (Hot Reload)
+#### Unified Container (Recommended for Production) ⭐
 
+Single container with both frontend and backend, using Nginx as reverse proxy:
+
+```bash
+docker-compose -f docker-compose.unified.yml up --build
+```
+
+**Benefits:**
+- Single port (8080) for everything
+- No CORS issues - all requests are same-origin
+- Nginx handles routing: frontend served directly, `/api/*` proxied to backend
+- Smaller footprint and easier deployment
+
+**Access:**
+- Application: http://localhost:8080
+- API Docs: http://localhost:8080/docs
+
+#### Separate Containers (Development)
+
+**Development Mode (Hot Reload):**
 ```bash
 docker-compose up --build
 ```
+Runs Vite dev server (frontend:8080) and FastAPI (backend:8000) separately.
 
-This runs the Vite dev server with hot module replacement for development.
-
-#### Production Mode (Optimized Static Build)
-
+**Production Mode (Separate):**
 ```bash
 docker-compose -f docker-compose.prod.yml up --build
 ```
-
-This builds the React app and serves it with Nginx - much faster and smaller!
-
-**Access the application:**
-- Frontend: http://localhost:8080
-- Backend API: http://localhost:8000
-- API Docs: http://localhost:8000/docs
+Both frontend and backend in separate containers.
 
 ### Local Development
 

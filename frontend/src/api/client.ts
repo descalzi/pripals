@@ -7,6 +7,13 @@ const getApiUrl = () => {
     return import.meta.env.VITE_API_URL;
   }
 
+  // In production (served from nginx), use relative URL
+  // This works because nginx proxies /api/ to the backend
+  if (import.meta.env.PROD) {
+    console.log('Using relative API URL (production)');
+    return '';  // Empty string means same origin
+  }
+
   const hostname = window.location.hostname;
 
   // If accessing via Tailscale, use Tailscale hostname
@@ -23,8 +30,8 @@ const getApiUrl = () => {
     return apiUrl;
   }
 
-  // Default to localhost
-  console.log('Using localhost API URL');
+  // Default to localhost for development
+  console.log('Using localhost API URL (development)');
   return 'http://localhost:8000';
 };
 

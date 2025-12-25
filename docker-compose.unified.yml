@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  pripals:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pripals-unified
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
