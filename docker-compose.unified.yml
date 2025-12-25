@@ -5,13 +5,24 @@ services:
       dockerfile: Dockerfile
     container_name: pripals-unified
     ports:
-      - "8080:8080"
+      - "8081:8080"
     volumes:
       - pripals-data:/app/data
     restart: unless-stopped
     environment:
       - PYTHONUNBUFFERED=1
       - DATABASE_URL=sqlite:///./data/pripals.db
+    networks:
+      - traefik-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pripals.rule=PathPrefix(`/pripals`)"
+      - "traefik.http.routers.pripals.entrypoints=web"
+      - "traefik.http.services.pripals.loadbalancer.server.port=8080"
 
 volumes:
   pripals-data:
+
+networks:
+  traefik-network:
+    external: true
