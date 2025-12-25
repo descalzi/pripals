@@ -54,6 +54,12 @@ export interface PointReason {
   points: number;
 }
 
+export interface PointHistoryEntry {
+  timestamp: string;
+  points: number;
+  totalPoints: number;
+}
+
 export const POINT_REASONS: PointReason[] = [
   { label: 'Got Pregnant', points: -60 },
   { label: 'Moving away', points: -50 },

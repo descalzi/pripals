@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, UploadFile, File
 from typing import List
 import base64
-from app.models import Friend, FriendCreate, FriendUpdate, PointActionCreate, League
+from app.models import Friend, FriendCreate, FriendUpdate, PointActionCreate, League, PointHistoryEntry
 from app.services.storage import storage
 from app.services.league import calculate_leagues
 
@@ -54,6 +54,15 @@ async def add_points(friend_id: str, point_action: PointActionCreate):
     if not action:
         raise HTTPException(status_code=404, detail="Friend not found")
     return action
+
+
+@router.get("/friends/{friend_id}/history", response_model=List[PointHistoryEntry])
+async def get_point_history(friend_id: str, limit: int = 10):
+    """Get point history for a friend"""
+    friend = storage.get_friend(friend_id)
+    if not friend:
+        raise HTTPException(status_code=404, detail="Friend not found")
+    return storage.get_point_history(friend_id, limit)
 
 
 @router.get("/leagues", response_model=List[League])

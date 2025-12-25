@@ -1,7 +1,7 @@
 from typing import Dict, List, Optional
 from datetime import datetime
 import uuid
-from app.models import Friend, FriendCreate, FriendUpdate, PointAction, PointActionCreate
+from app.models import Friend, FriendCreate, FriendUpdate, PointAction, PointActionCreate, PointHistoryEntry
 
 
 class InMemoryStorage:
@@ -84,6 +84,27 @@ class InMemoryStorage:
             action for action in self.point_actions.values()
             if action.friendId == friend_id
         ]
+
+    def get_point_history(self, friend_id: str, limit: int = 10) -> List[PointHistoryEntry]:
+        """Get the point history for a friend, showing cumulative points over time"""
+        actions = sorted(
+            [action for action in self.point_actions.values() if action.friendId == friend_id],
+            key=lambda x: x.timestamp
+        )
+
+        history: List[PointHistoryEntry] = []
+        running_total = 0
+
+        for action in actions:
+            running_total += action.points
+            history.append(PointHistoryEntry(
+                timestamp=action.timestamp,
+                points=action.points,
+                totalPoints=running_total
+            ))
+
+        # Return last N entries
+        return history[-limit:] if len(history) > limit else history
 
 
 # Global storage instance

@@ -19,11 +19,12 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
-import { Friend } from '../types';
+import { Friend, PointHistoryEntry } from '../types';
 import { apiClient } from '../api/client';
 import FriendCard from '../components/FriendCard';
 import ConfirmDialog from '../components/ConfirmDialog';
 import EmptyState from '../components/EmptyState';
+import PointHistoryChart from '../components/PointHistoryChart';
 import bannerFriends from '../assets/banner_friends.png';
 
 const FriendsPage = () => {
@@ -34,6 +35,8 @@ const FriendsPage = () => {
   const [selectedFriend, setSelectedFriend] = useState<Friend | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [friendToDelete, setFriendToDelete] = useState<Friend | null>(null);
+  const [pointHistory, setPointHistory] = useState<PointHistoryEntry[]>([]);
+  const [loadingHistory, setLoadingHistory] = useState(false);
 
   // Form state
   const [name, setName] = useState('');
@@ -60,13 +63,25 @@ const FriendsPage = () => {
     fetchFriends();
   }, []);
 
-  const handleOpenDialog = (friend?: Friend) => {
+  const handleOpenDialog = async (friend?: Friend) => {
     if (friend) {
       setSelectedFriend(friend);
       setName(friend.name);
       setPartnerName(friend.partnerName || '');
       setIsCouple(friend.isCouple);
       setImagePreview(friend.profilePicture);
+
+      // Load point history for existing friend
+      setLoadingHistory(true);
+      try {
+        const history = await apiClient.getPointHistory(friend.id);
+        setPointHistory(history);
+      } catch (err) {
+        console.error('Error loading point history:', err);
+        setPointHistory([]);
+      } finally {
+        setLoadingHistory(false);
+      }
     } else {
       setSelectedFriend(null);
       setName('');
@@ -74,6 +89,7 @@ const FriendsPage = () => {
       setIsCouple(false);
       setImageFile(null);
       setImagePreview('');
+      setPointHistory([]);
     }
     setDialogOpen(true);
   };
@@ -86,6 +102,7 @@ const FriendsPage = () => {
     setIsCouple(false);
     setImageFile(null);
     setImagePreview('');
+    setPointHistory([]);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -254,6 +271,18 @@ const FriendsPage = () => {
         </DialogTitle>
         <DialogContent>
           <Box sx={{ mt: 2 }}>
+            {selectedFriend && (
+              <Box sx={{ mb: 3 }}>
+                {loadingHistory ? (
+                  <Box sx={{ textAlign: 'center', py: 2 }}>
+                    <CircularProgress size={24} />
+                  </Box>
+                ) : (
+                  <PointHistoryChart history={pointHistory} />
+                )}
+              </Box>
+            )}
+
             <TextField
               fullWidth
               label="Name"

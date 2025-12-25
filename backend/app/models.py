@@ -53,3 +53,9 @@ class League(BaseModel):
     title: str
     description: str
     friends: list[Friend]
+
+
+class PointHistoryEntry(BaseModel):
+    timestamp: datetime
+    points: int
+    totalPoints: int

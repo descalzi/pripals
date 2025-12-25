@@ -1,4 +1,4 @@
-import { Friend, FriendCreate, FriendUpdate, PointActionCreate, League } from '../types';
+import { Friend, FriendCreate, FriendUpdate, PointActionCreate, League, PointHistoryEntry } from '../types';
 
 // Determine API URL based on environment
 const getApiUrl = () => {
@@ -92,6 +92,12 @@ class ApiClient {
       body: JSON.stringify(pointAction),
     });
     if (!response.ok) throw new Error('Failed to add points');
+  }
+
+  async getPointHistory(friendId: string, limit: number = 10): Promise<PointHistoryEntry[]> {
+    const response = await fetch(`${this.baseUrl}/api/friends/${friendId}/history?limit=${limit}`);
+    if (!response.ok) throw new Error('Failed to fetch point history');
+    return response.json();
   }
 
   // Leagues endpoint
