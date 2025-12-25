@@ -156,7 +156,8 @@ const FriendsPage = () => {
       await fetchFriends();
     } catch (err) {
       console.error('Error saving friend:', err);
-      alert('Failed to save friend');
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      alert(`Failed to save friend: ${errorMessage}`);
     }
   };
 

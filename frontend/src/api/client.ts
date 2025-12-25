@@ -74,7 +74,10 @@ class ApiClient {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updates),
     });
-    if (!response.ok) throw new Error('Failed to update friend');
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to update friend: ${response.status} - ${errorText}`);
+    }
     return response.json();
   }
 
@@ -116,7 +119,10 @@ class ApiClient {
       method: 'POST',
       body: formData,
     });
-    if (!response.ok) throw new Error('Failed to upload image');
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to upload image: ${response.status} - ${errorText}`);
+    }
 
     const result = await response.json();
     return result.data; // Returns base64 encoded image
