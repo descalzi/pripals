@@ -24,7 +24,7 @@ import { apiClient } from '../api/client';
 import FriendCard from '../components/FriendCard';
 import ConfirmDialog from '../components/ConfirmDialog';
 import EmptyState from '../components/EmptyState';
-import logo from '../assets/logo.png';
+import bannerFriends from '../assets/banner_friends.png';
 
 const FriendsPage = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
@@ -180,21 +180,20 @@ const FriendsPage = () => {
 
   return (
     <Container maxWidth="sm" sx={{ py: 3, pb: 10 }}>
-      <Box sx={{ textAlign: 'center', mb: 4 }}>
+      <Box sx={{ mb: 4 }}>
         <Box
           component="img"
-          src={logo}
-          alt="Pri-Pals Logo"
+          src={bannerFriends}
+          alt="Friends"
           sx={{
-            width: 120,
+            width: '100%',
             height: 'auto',
+            borderRadius: 3,
+            boxShadow: 3,
             mb: 2,
           }}
         />
-        <Typography variant="h3" color="primary" gutterBottom>
-          Manage Friends
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" align="center">
           {friends.length} {friends.length === 1 ? 'friend' : 'friends'}
         </Typography>
       </Box>

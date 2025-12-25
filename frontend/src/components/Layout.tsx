@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { Box, BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import PeopleIcon from '@mui/icons-material/People';
-import SettingsIcon from '@mui/icons-material/Settings';
 import LeaguesPage from '../pages/LeaguesPage';
 import FriendsPage from '../pages/FriendsPage';
 import SettingsPage from '../pages/SettingsPage';
+import trophyIcon from '../assets/trophy.png';
+import friendsIcon from '../assets/friends.png';
+import settingsIcon from '../assets/settings.png';
 
 const Layout = () => {
   const navigate = useNavigate();
@@ -45,9 +45,39 @@ const Layout = () => {
       </Box>
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
         <BottomNavigation value={value} onChange={handleChange}>
-          <BottomNavigationAction label="Leagues" icon={<EmojiEventsIcon />} />
-          <BottomNavigationAction label="Friends" icon={<PeopleIcon />} />
-          <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
+          <BottomNavigationAction
+            label="Leagues"
+            icon={
+              <Box
+                component="img"
+                src={trophyIcon}
+                alt="Leagues"
+                sx={{ width: 24, height: 24 }}
+              />
+            }
+          />
+          <BottomNavigationAction
+            label="Friends"
+            icon={
+              <Box
+                component="img"
+                src={friendsIcon}
+                alt="Friends"
+                sx={{ width: 24, height: 24 }}
+              />
+            }
+          />
+          <BottomNavigationAction
+            label="Settings"
+            icon={
+              <Box
+                component="img"
+                src={settingsIcon}
+                alt="Settings"
+                sx={{ width: 24, height: 24 }}
+              />
+            }
+          />
         </BottomNavigation>
       </Paper>
     </Box>

@@ -1,24 +1,23 @@
 import { Box, Typography, Container, Card, CardContent, Divider } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
-import logo from '../assets/logo.png';
+import bannerSettings from '../assets/banner_settings.png';
 
 const SettingsPage = () => {
   return (
     <Container maxWidth="sm" sx={{ py: 3 }}>
-      <Box sx={{ textAlign: 'center', mb: 4 }}>
+      <Box sx={{ mb: 4 }}>
         <Box
           component="img"
-          src={logo}
-          alt="Pri-Pals Logo"
+          src={bannerSettings}
+          alt="Settings"
           sx={{
-            width: 120,
+            width: '100%',
             height: 'auto',
+            borderRadius: 3,
+            boxShadow: 3,
             mb: 2,
           }}
         />
-        <Typography variant="h3" color="primary" gutterBottom>
-          Settings
-        </Typography>
       </Box>
 
       <Card sx={{ mb: 2 }}>
@@ -35,9 +34,9 @@ const SettingsPage = () => {
             <strong>Leagues:</strong>
           </Typography>
           <Typography variant="body2" color="text.secondary" component="div" sx={{ ml: 2 }}>
-            • <strong>Primium</strong> - The Elite (Top 3)<br />
-            • <strong>Prime</strong> - The Inner Circle (Next 5)<br />
-            • <strong>Primitives</strong> - The Bottom Tier
+            • <strong>Primium</strong> - The Elite. Instant text replies; invited to the "secret" group chat.<br />
+            • <strong>Prime</strong> - The Inner Circle. Gets a birthday shoutout; allowed to suggest dinner spots<br />
+            • <strong>Primitives</strong> - The Bottom Tier. Lucky if they get a "like" on their IG story
           </Typography>
         </CardContent>
       </Card>
@@ -48,7 +47,7 @@ const SettingsPage = () => {
             Version 1.0.0
           </Typography>
           <Typography variant="caption" color="text.secondary" align="center" display="block" sx={{ mt: 1 }}>
-            Made with ❤️ using React & FastAPI
+            Made with ❤️ by Martin
           </Typography>
         </CardContent>
       </Card>
