@@ -62,10 +62,14 @@ export interface PointHistoryEntry {
 
 export const POINT_REASONS: PointReason[] = [
   { label: 'Got Pregnant', points: -60 },
-  { label: 'Moving away', points: -50 },
+  { label: 'Got Pregnant Again', points: -80 },
+  { label: 'Is Moving Away', points: -50 },
   { label: 'Bad Musical Taste', points: -20 },
-  { label: 'Replies with audios only', points: -10 },
+  { label: 'Hates Hiking', points: -10 },
+  { label: 'Replies With Audios', points: -10 },
   { label: 'Good Musical Taste', points: 20 },
-  { label: 'Does crossfit', points: 20 },
-  { label: 'Plays Tennis', points: 30 }
+  { label: 'Does Crossfit', points: 20 },
+  { label: 'Offers Tech Support', points: 20 },
+  { label: 'Plays Tennis', points: 30 },
+  { label: 'Gay', points: 50 },
 ];

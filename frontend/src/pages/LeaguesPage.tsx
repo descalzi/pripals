@@ -5,6 +5,7 @@ import { League, Friend, POINT_REASONS } from '../types';
 import { apiClient } from '../api/client';
 import LeagueCard from '../components/LeagueCard';
 import EmptyState from '../components/EmptyState';
+import FriendDetailsDialog from '../components/FriendDetailsDialog';
 import banner from '../assets/banner.png';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,6 +17,7 @@ const LeaguesPage = () => {
   const [selectedFriend, setSelectedFriend] = useState<Friend | null>(null);
   const [pointDialogOpen, setPointDialogOpen] = useState(false);
   const [pointDialogMode, setPointDialogMode] = useState<'add' | 'remove'>('add');
+  const [detailsDialogOpen, setDetailsDialogOpen] = useState(false);
 
   const fetchLeagues = async () => {
     try {
@@ -42,6 +44,11 @@ const LeaguesPage = () => {
     fetchLeagues();
   }, []);
 
+  const handleFriendClick = (friend: Friend) => {
+    setSelectedFriend(friend);
+    setDetailsDialogOpen(true);
+  };
+
   const handleAddPoints = (friend: Friend) => {
     setSelectedFriend(friend);
     setPointDialogMode('add');
@@ -52,6 +59,11 @@ const LeaguesPage = () => {
     setSelectedFriend(friend);
     setPointDialogMode('remove');
     setPointDialogOpen(true);
+  };
+
+  const handleCloseDetailsDialog = () => {
+    setDetailsDialogOpen(false);
+    setSelectedFriend(null);
   };
 
   const handlePointReasonSelect = async (points: number, reason: string) => {
@@ -134,6 +146,7 @@ const LeaguesPage = () => {
           <LeagueCard
             key={league.type}
             league={league}
+            onFriendClick={handleFriendClick}
             onAddPoints={handleAddPoints}
             onRemovePoints={handleRemovePoints}
           />
@@ -177,6 +190,13 @@ const LeaguesPage = () => {
           </List>
         </DialogContent>
       </Dialog>
+
+      {/* Friend Details Dialog */}
+      <FriendDetailsDialog
+        friend={selectedFriend}
+        open={detailsDialogOpen}
+        onClose={handleCloseDetailsDialog}
+      />
     </Container>
   );
 };
