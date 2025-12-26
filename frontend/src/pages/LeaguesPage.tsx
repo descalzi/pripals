@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Typography, Container, Dialog, DialogTitle, DialogContent, List, ListItem, ListItemButton, ListItemText, Button, Alert } from '@mui/material';
+import { Box, Typography, Container, CircularProgress, Dialog, DialogTitle, DialogContent, List, ListItem, ListItemButton, ListItemText, Button, Alert } from '@mui/material';
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
 import { League, Friend, POINT_REASONS } from '../types';
 import { apiClient } from '../api/client';
@@ -93,18 +93,32 @@ const LeaguesPage = () => {
 
   if (loading) {
     return (
-      <Container maxWidth="sm" sx={{ py: 3, textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
-        <Box
-          component="img"
-          src={loadingImage}
-          alt="Loading..."
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundImage: `url(${loadingImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <CircularProgress
+          size={80}
+          thickness={4}
           sx={{
-            width: '100%',
-            maxWidth: 400,
-            height: 'auto',
+            color: 'primary.main',
+            filter: 'drop-shadow(0 0 8px rgba(0, 0, 0, 0.5))',
           }}
         />
-      </Container>
+      </Box>
     );
   }
 
