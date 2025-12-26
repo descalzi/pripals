@@ -2,6 +2,9 @@ import { Box, Typography, Paper } from '@mui/material';
 import { League, Friend } from '../types';
 import { leagueColors } from '../theme';
 import FriendCard from './FriendCard';
+import headerPrimium from '../assets/header_primium.png';
+import headerPrime from '../assets/header_prime.png';
+import headerPrimitives from '../assets/header_primitives.png';
 
 interface LeagueCardProps {
   league: League;
@@ -10,8 +13,15 @@ interface LeagueCardProps {
   onRemovePoints?: (friend: Friend) => void;
 }
 
+const leagueHeaders = {
+  PRIMIUM: headerPrimium,
+  PRIME: headerPrime,
+  PRIMITIVES: headerPrimitives,
+};
+
 const LeagueCard = ({ league, onFriendClick, onAddPoints, onRemovePoints }: LeagueCardProps) => {
   const colors = leagueColors[league.type];
+  const headerImage = leagueHeaders[league.type];
 
   return (
     <Paper
@@ -25,38 +35,35 @@ const LeagueCard = ({ league, onFriendClick, onAddPoints, onRemovePoints }: Leag
       {/* League Header */}
       <Box
         sx={{
-          background: colors.gradient,
-          p: 3,
-          textAlign: 'center',
-          color: 'white',
+          position: 'relative',
+          height: 200,
+          backgroundImage: `url(${headerImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          pb: 2,
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%)',
+          },
         }}
       >
         <Typography
-          variant="h4"
-          fontWeight={800}
-          sx={{
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
-            letterSpacing: '0.5px',
-          }}
-        >
-          {league.title}
-        </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            mt: 0.5,
-            opacity: 0.95,
-            fontStyle: 'italic',
-          }}
-        >
-          {league.description}
-        </Typography>
-        <Typography
           variant="caption"
           sx={{
-            mt: 1,
-            display: 'block',
-            opacity: 0.9,
+            position: 'relative',
+            zIndex: 1,
+            color: 'white',
+            textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)',
+            opacity: 0.95,
           }}
         >
           {league.friends.length} {league.friends.length === 1 ? 'friend' : 'friends'}
