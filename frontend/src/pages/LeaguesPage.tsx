@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Typography, Container, CircularProgress, Dialog, DialogTitle, DialogContent, List, ListItem, ListItemButton, ListItemText, Button, Alert } from '@mui/material';
+import { Box, Typography, Container, Dialog, DialogTitle, DialogContent, List, ListItem, ListItemButton, ListItemText, Button, Alert } from '@mui/material';
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
 import { League, Friend, POINT_REASONS } from '../types';
 import { apiClient } from '../api/client';
@@ -7,6 +7,7 @@ import LeagueCard from '../components/LeagueCard';
 import EmptyState from '../components/EmptyState';
 import FriendDetailsDialog from '../components/FriendDetailsDialog';
 import banner from '../assets/banner.png';
+import loadingImage from '../assets/loading.webp';
 import { useNavigate } from 'react-router-dom';
 
 const LeaguesPage = () => {
@@ -92,11 +93,17 @@ const LeaguesPage = () => {
 
   if (loading) {
     return (
-      <Container maxWidth="sm" sx={{ py: 3, textAlign: 'center' }}>
-        <CircularProgress />
-        <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
-          Loading leagues...
-        </Typography>
+      <Container maxWidth="sm" sx={{ py: 3, textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
+        <Box
+          component="img"
+          src={loadingImage}
+          alt="Loading..."
+          sx={{
+            width: '100%',
+            maxWidth: 400,
+            height: 'auto',
+          }}
+        />
       </Container>
     );
   }
