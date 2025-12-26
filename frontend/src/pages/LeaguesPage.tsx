@@ -102,22 +102,62 @@ const LeaguesPage = () => {
           bottom: 0,
           width: '100vw',
           height: '100vh',
-          backgroundImage: `url(${loadingImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          bgcolor: 'background.default',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <CircularProgress
-          size={80}
-          thickness={4}
+        <Box
           sx={{
-            color: 'primary.main',
-            filter: 'drop-shadow(0 0 8px rgba(0, 0, 0, 0.5))',
+            position: 'relative',
+            width: '80vmin',
+            height: '80vmin',
+            borderRadius: '50%',
+            overflow: 'hidden',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundImage: `url(${loadingImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: 0.9,
+            },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.3) 100%)',
+            },
           }}
-        />
+        >
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 1,
+            }}
+          >
+            <CircularProgress
+              size={80}
+              thickness={4}
+              sx={{
+                color: 'white',
+                filter: 'drop-shadow(0 0 12px rgba(0, 0, 0, 0.8))',
+              }}
+            />
+          </Box>
+        </Box>
       </Box>
     );
   }

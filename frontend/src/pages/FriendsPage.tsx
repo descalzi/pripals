@@ -26,6 +26,7 @@ import ConfirmDialog from '../components/ConfirmDialog';
 import EmptyState from '../components/EmptyState';
 import PointHistoryChart from '../components/PointHistoryChart';
 import bannerFriends from '../assets/banner_friends.webp';
+import loadingImage from '../assets/loading.webp';
 
 const FriendsPage = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
@@ -187,12 +188,72 @@ const FriendsPage = () => {
 
   if (loading) {
     return (
-      <Container maxWidth="sm" sx={{ py: 3, textAlign: 'center' }}>
-        <CircularProgress />
-        <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
-          Loading friends...
-        </Typography>
-      </Container>
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100vw',
+          height: '100vh',
+          bgcolor: 'background.default',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Box
+          sx={{
+            position: 'relative',
+            width: '80vmin',
+            height: '80vmin',
+            borderRadius: '50%',
+            overflow: 'hidden',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundImage: `url(${loadingImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: 0.9,
+            },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.3) 100%)',
+            },
+          }}
+        >
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 1,
+            }}
+          >
+            <CircularProgress
+              size={80}
+              thickness={4}
+              sx={{
+                color: 'white',
+                filter: 'drop-shadow(0 0 12px rgba(0, 0, 0, 0.8))',
+              }}
+            />
+          </Box>
+        </Box>
+      </Box>
     );
   }
 
