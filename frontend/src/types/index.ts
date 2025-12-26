@@ -71,7 +71,7 @@ export const POINT_REASONS: PointReason[] = [
   { label: 'Plays Tennis', points: 30 },
   { label: 'Hikes', points: 25 },
   { label: 'Good Taste in Music', points: 20 },
-  { label: 'Good Taset in Books', points: 20 },
+  { label: 'Good Taste in Books', points: 20 },
   { label: 'Does Crossfit', points: 20 },
   { label: 'Offers Tech Support', points: 15 },
 ];
