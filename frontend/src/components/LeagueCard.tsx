@@ -56,18 +56,6 @@ const LeagueCard = ({ league, onFriendClick, onAddPoints, onRemovePoints }: Leag
           },
         }}
       >
-        <Typography
-          variant="caption"
-          sx={{
-            position: 'relative',
-            zIndex: 1,
-            color: 'white',
-            textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)',
-            opacity: 0.95,
-          }}
-        >
-          {league.friends.length} {league.friends.length === 1 ? 'friend' : 'friends'}
-        </Typography>
       </Box>
 
       {/* Friends List */}
