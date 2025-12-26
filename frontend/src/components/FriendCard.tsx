@@ -1,7 +1,7 @@
 import { Card, CardContent, Avatar, Typography, Box, IconButton } from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { Friend } from '../types';
+import iconPlus from '../assets/icon_plus.webp';
+import iconMinus from '../assets/icon_minus.webp';
 
 interface FriendCardProps {
   friend: Friend;
@@ -89,7 +89,6 @@ const FriendCard = ({ friend, onAddPoints, onRemovePoints, onClick }: FriendCard
         <Box sx={{ display: 'flex', gap: 0.5 }}>
           {onRemovePoints && (
             <IconButton
-              color="error"
               onClick={handleRemoveClick}
               sx={{
                 '&:active': {
@@ -97,12 +96,16 @@ const FriendCard = ({ friend, onAddPoints, onRemovePoints, onClick }: FriendCard
                 },
               }}
             >
-              <RemoveCircleIcon />
+              <Box
+                component="img"
+                src={iconMinus}
+                alt="Remove points"
+                sx={{ width: 28, height: 28 }}
+              />
             </IconButton>
           )}
           {onAddPoints && (
             <IconButton
-              color="success"
               onClick={handleAddClick}
               sx={{
                 '&:active': {
@@ -110,7 +113,12 @@ const FriendCard = ({ friend, onAddPoints, onRemovePoints, onClick }: FriendCard
                 },
               }}
             >
-              <AddCircleIcon />
+              <Box
+                component="img"
+                src={iconPlus}
+                alt="Add points"
+                sx={{ width: 28, height: 28 }}
+              />
             </IconButton>
           )}
         </Box>

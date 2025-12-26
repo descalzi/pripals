@@ -51,7 +51,9 @@ const FriendsPage = () => {
       setLoading(true);
       setError(null);
       const data = await apiClient.getFriends();
-      setFriends(data);
+      // Sort friends alphabetically by name
+      const sortedFriends = data.sort((a, b) => a.name.localeCompare(b.name));
+      setFriends(sortedFriends);
     } catch (err) {
       setError('Failed to load friends. Make sure the backend is running.');
       console.error('Error fetching friends:', err);

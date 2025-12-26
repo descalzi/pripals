@@ -24,11 +24,11 @@ const SettingsPage = () => {
         <CardContent>
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
             <InfoIcon color="primary" sx={{ mr: 1 }} />
-            <Typography variant="h6">About Pri-Pals</Typography>
+            <Typography variant="h6">About PriPals</Typography>
           </Box>
           <Divider sx={{ mb: 2 }} />
           <Typography variant="body2" color="text.secondary" paragraph>
-            PriPals is a fun, friendly app to rank your friends into leagues based on points.
+            PriPals is a fun, friendly app to rank Pri's friends into leagues based on points.
           </Typography>
           <Typography variant="body2" color="text.secondary" paragraph>
             <strong>Leagues:</strong>
