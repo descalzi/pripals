@@ -51,12 +51,16 @@ const Layout = () => {
           sx={{
             '& .MuiBottomNavigationAction-root': {
               minWidth: 'auto',
-              padding: '6px 12px',
+              padding: '12px 16px',
+              borderRadius: 2,
+              margin: '4px',
+              transition: 'all 0.3s ease',
             },
             '& .Mui-selected': {
-              color: 'primary.main',
-              '& img': {
-                filter: 'brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(180deg) brightness(95%) contrast(101%)',
+              bgcolor: 'primary.main',
+              color: 'white',
+              '&:hover': {
+                bgcolor: 'primary.dark',
               },
             },
           }}
