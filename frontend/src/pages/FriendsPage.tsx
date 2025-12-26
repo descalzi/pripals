@@ -303,7 +303,8 @@ const FriendsPage = () => {
                 onClick={() => handleOpenDialog(friend)}
                 sx={{
                   position: 'absolute',
-                  top: 8,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
                   right: 52,
                 }}
               >
@@ -318,7 +319,8 @@ const FriendsPage = () => {
                 onClick={() => handleDeleteClick(friend)}
                 sx={{
                   position: 'absolute',
-                  top: 8,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
                   right: 8,
                 }}
               >
