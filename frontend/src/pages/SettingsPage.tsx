@@ -28,7 +28,7 @@ const SettingsPage = () => {
           </Box>
           <Divider sx={{ mb: 2 }} />
           <Typography variant="body2" color="text.secondary" paragraph>
-            Pri-Pals is a fun, friendly app to rank your friends into leagues based on points.
+            PriPals is a fun, friendly app to rank your friends into leagues based on points.
           </Typography>
           <Typography variant="body2" color="text.secondary" paragraph>
             <strong>Leagues:</strong>

@@ -44,37 +44,50 @@ const Layout = () => {
         </Routes>
       </Box>
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-        <BottomNavigation value={value} onChange={handleChange}>
+        <BottomNavigation
+          value={value}
+          onChange={handleChange}
+          showLabels={false}
+          sx={{
+            '& .MuiBottomNavigationAction-root': {
+              minWidth: 'auto',
+              padding: '6px 12px',
+            },
+            '& .Mui-selected': {
+              color: 'primary.main',
+              '& img': {
+                filter: 'brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(180deg) brightness(95%) contrast(101%)',
+              },
+            },
+          }}
+        >
           <BottomNavigationAction
-            label="Leagues"
             icon={
               <Box
                 component="img"
                 src={trophyIcon}
                 alt="Leagues"
-                sx={{ width: 24, height: 24 }}
+                sx={{ width: 28, height: 28, transition: 'all 0.2s' }}
               />
             }
           />
           <BottomNavigationAction
-            label="Friends"
             icon={
               <Box
                 component="img"
                 src={friendsIcon}
                 alt="Friends"
-                sx={{ width: 24, height: 24 }}
+                sx={{ width: 28, height: 28, transition: 'all 0.2s' }}
               />
             }
           />
           <BottomNavigationAction
-            label="Settings"
             icon={
               <Box
                 component="img"
                 src={settingsIcon}
                 alt="Settings"
-                sx={{ width: 24, height: 24 }}
+                sx={{ width: 28, height: 28, transition: 'all 0.2s' }}
               />
             }
           />
