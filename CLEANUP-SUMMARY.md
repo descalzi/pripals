@@ -33,6 +33,16 @@ This ensures:
 - Local development uses relative paths for flexibility
 - Assets load correctly at `/pripals/assets/...`
 
+**Created `frontend/.env.production`:**
+```env
+VITE_API_URL=https://chunkyboy.reindeer-great.ts.net/pripals
+```
+
+This ensures:
+- API calls go to the correct URL with `/pripals` prefix
+- The API client (which adds `/api/xyz`) will construct full URLs like `/pripals/api/leagues`
+- Works with the existing API client logic that checks for `VITE_API_URL`
+
 ### 3. Nginx Configuration
 
 **Before:** `nginx-unified.conf` (mixed approach)
