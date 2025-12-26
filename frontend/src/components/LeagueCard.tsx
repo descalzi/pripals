@@ -36,7 +36,7 @@ const LeagueCard = ({ league, onFriendClick, onAddPoints, onRemovePoints }: Leag
       <Box
         sx={{
           position: 'relative',
-          height: 250,
+          height: 300,
           backgroundImage: `url(${headerImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
