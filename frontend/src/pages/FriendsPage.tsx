@@ -17,7 +17,6 @@ import {
   IconButton,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import { Friend, PointHistoryEntry } from '../types';
 import { apiClient } from '../api/client';
@@ -27,6 +26,8 @@ import EmptyState from '../components/EmptyState';
 import PointHistoryChart from '../components/PointHistoryChart';
 import bannerFriends from '../assets/banner_friends.webp';
 import loadingImage from '../assets/loading.webp';
+import iconEdit from '../assets/icon_edit.webp';
+import iconDelete from '../assets/icon_delete.webp';
 
 const FriendsPage = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
@@ -299,7 +300,21 @@ const FriendsPage = () => {
             <Box key={friend.id} sx={{ position: 'relative' }}>
               <FriendCard friend={friend} onClick={() => handleOpenDialog(friend)} />
               <IconButton
-                color="error"
+                onClick={() => handleOpenDialog(friend)}
+                sx={{
+                  position: 'absolute',
+                  top: 8,
+                  right: 52,
+                }}
+              >
+                <Box
+                  component="img"
+                  src={iconEdit}
+                  alt="Edit friend"
+                  sx={{ width: 24, height: 24 }}
+                />
+              </IconButton>
+              <IconButton
                 onClick={() => handleDeleteClick(friend)}
                 sx={{
                   position: 'absolute',
@@ -307,7 +322,12 @@ const FriendsPage = () => {
                   right: 8,
                 }}
               >
-                <DeleteIcon />
+                <Box
+                  component="img"
+                  src={iconDelete}
+                  alt="Delete friend"
+                  sx={{ width: 24, height: 24 }}
+                />
               </IconButton>
             </Box>
           ))}
