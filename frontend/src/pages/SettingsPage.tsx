@@ -1,6 +1,6 @@
 import { Box, Typography, Container, Card, CardContent, Divider } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
-import bannerSettings from '../assets/banner_settings.png';
+import bannerSettings from '../assets/banner_settings.webp';
 
 const SettingsPage = () => {
   return (

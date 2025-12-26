@@ -2,9 +2,9 @@ import { Box, Typography, Paper } from '@mui/material';
 import { League, Friend } from '../types';
 import { leagueColors } from '../theme';
 import FriendCard from './FriendCard';
-import headerPrimium from '../assets/header_primium.png';
-import headerPrime from '../assets/header_prime.png';
-import headerPrimitives from '../assets/header_primitives.png';
+import headerPrimium from '../assets/header_primium.webp';
+import headerPrime from '../assets/header_prime.webp';
+import headerPrimitives from '../assets/header_primitives.webp';
 
 interface LeagueCardProps {
   league: League;
@@ -36,7 +36,7 @@ const LeagueCard = ({ league, onFriendClick, onAddPoints, onRemovePoints }: Leag
       <Box
         sx={{
           position: 'relative',
-          height: 200,
+          height: 250,
           backgroundImage: `url(${headerImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',

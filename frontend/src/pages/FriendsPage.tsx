@@ -25,7 +25,7 @@ import FriendCard from '../components/FriendCard';
 import ConfirmDialog from '../components/ConfirmDialog';
 import EmptyState from '../components/EmptyState';
 import PointHistoryChart from '../components/PointHistoryChart';
-import bannerFriends from '../assets/banner_friends.png';
+import bannerFriends from '../assets/banner_friends.webp';
 
 const FriendsPage = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
